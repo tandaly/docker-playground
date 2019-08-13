@@ -18,7 +18,6 @@ services:
     container_name: kibana
     environment:
       - elasticsearch.hosts=http://elasticsearch:9200
-      - ELASTICSEARCH_URL=http://elasticsearch:9200/
     hostname: kibana
     links:
       - elasticsearch
@@ -28,7 +27,7 @@ services:
     ports:
       - "5601:5601"
   logstash:
-    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/logstash
+    image: docker.elastic.co/logstash/logstash:7.1.1
     container_name: logstash
     hostname: logstash
     restart: always
