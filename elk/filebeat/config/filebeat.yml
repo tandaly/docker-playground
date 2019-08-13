@@ -16,7 +16,7 @@ filebeat.prospectors:
 #-------------------------- Elasticsearch output ------------------------------
 # 直接输出到elasticsearch,这里的hosts是elk地址，端口号是elasticsearch端口#
 output.elasticsearch:
-  hosts: ["10.9.70.62:9200"]
+  hosts: ["192.168.0.32:9200"]
  
 #==================== Elasticsearch template setting ==========================
  
