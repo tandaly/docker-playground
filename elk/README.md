@@ -1,0 +1,1 @@
+http://www.devzxd.top/2018/10/25/elk-filebeat-dockerlogs.html

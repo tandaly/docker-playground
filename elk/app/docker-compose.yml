@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    # 设置labels
+    labels:
+      service: db
+    # logging设置增加labels.service
+    logging:
+      options:
+        labels: "service"
+    ports:
+      - "3306:3306"
