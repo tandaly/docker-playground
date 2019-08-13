@@ -34,6 +34,18 @@ services:
     ports:
       - 9600:9600
       - 5044:5044
+  pilot:
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/host
+    privileged: true
+    environment:
+      FLUENTD_OUTPUT: elasticsearch #按照您的需要替换 
+      ELASTICSEARCH_HOST: elasticsearch #按照您的需要替换
+      ELASTICSEARCH_PORT: 9200
+    labels:
+      aliyun.global: true
 volumes:
   esdata:
     driver: local
