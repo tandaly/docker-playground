@@ -47,8 +47,6 @@ services:
       FLUENTD_OUTPUT: elasticsearch #按照您的需要替换 
       ELASTICSEARCH_HOST: elasticsearch #按照您的需要替换
       ELASTICSEARCH_PORT: 9200
-    labels:
-      aliyun.global: true
 volumes:
   esdata:
     driver: local
