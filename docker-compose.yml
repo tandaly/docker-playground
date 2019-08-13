@@ -16,18 +16,18 @@ services:
        - 5000:5000
      links:
        - elasticsearch
-  pilot:
-    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
-    container_name: pilot
-    links:
-      - elasticsearch
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /:/host
-    privileged: true
-    environment:
-      FLUENTD_OUTPUT: elasticsearch #按照您的需要替换 
-      ELASTICSEARCH_HOST: elasticsearch #按照您的需要替换
-      ELASTICSEARCH_PORT: 9200
-    labels:
-      aliyun.global: true
+   pilot:
+       image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
+       container_name: pilot
+       links:
+         - elasticsearch
+       volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+         - /:/host
+       privileged: true
+       environment:
+         FLUENTD_OUTPUT: elasticsearch #按照您的需要替换 
+         ELASTICSEARCH_HOST: elasticsearch #按照您的需要替换
+         ELASTICSEARCH_PORT: 9200
+       labels:
+         aliyun.global: true
