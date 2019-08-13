@@ -18,7 +18,7 @@ services:
     container_name: kibana
     environment:
       - elasticsearch.hosts=http://elasticsearch:9200
-      - ELASTICSEARCH_URL: http://elasticsearch:9200/
+      - ELASTICSEARCH_URL=http://elasticsearch:9200/
     hostname: kibana
     links:
       - elasticsearch
