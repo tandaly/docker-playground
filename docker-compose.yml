@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
@@ -14,35 +14,29 @@ services:
       - 9200:9200
       - 9300:9300
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.1.1
+    image: docker.elastic.co/kibana/kibana:7.3.0
     container_name: kibana
-    environment:
-      - elasticsearch.hosts=http://elasticsearch:9200
+    #environment:
+    #  - elasticsearch.hosts=http://elasticsearch:9200
     hostname: kibana
-    links:
-      - elasticsearch
     depends_on:
       - elasticsearch
     restart: always
     ports:
       - "5601:5601"
   logstash:
-    image: docker.elastic.co/logstash/logstash:7.1.1
+    image: docker.elastic.co/logstash/logstash:7.3.0
     container_name: logstash
     hostname: logstash
     restart: always
-    links:
-      - elasticsearch
     depends_on:
       - elasticsearch
     ports:
       - 9600:9600
       - 5044:5044
   pilot:
-    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
+    image: registry.cn-hangzhou.aliyuncs.com/acs/log-pilot:0.9.5-filebeat
     container_name: pilot
-    links:
-      - elasticsearch
     depends_on:
       - elasticsearch
     volumes:
