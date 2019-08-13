@@ -1,25 +1,43 @@
-version: '2'
- services:
-   elasticsearch:
-     image: elasticsearch
-   kibana:
-     image: kibana
-     environment:
-       ELASTICSEARCH_URL: http://elasticsearch:9200/
-     links:
-       - elasticsearch
-   logstash:
-     image: registry.cn-hangzhou.aliyuncs.com/acs-sample/logstash
-     hostname: logstash
-     ports:
-       - 5044:5044
-       - 5000:5000
-     links:
-       - elasticsearch
+version: '2.2'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    hostname: elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.1.1
+    container_name: kibana
+    environment:
+      - elasticsearch.hosts=http://elasticsearch:9200
+    hostname: kibana
+    depends_on:
+      - elasticsearch
+    restart: always
+    ports:
+      - "5601:5601"
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.1.1
+    container_name: logstash
+    hostname: logstash
+    restart: always
+    depends_on:
+      - elasticsearch
+    ports:
+      - 9600:9600
+      - 5044:5044
   pilot:
     image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
     container_name: pilot
-    links:
+    depends_on:
       - elasticsearch
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -31,3 +49,6 @@ version: '2'
       ELASTICSEARCH_PORT: 9200
     labels:
       aliyun.global: true
+volumes:
+  esdata:
+    driver: local
