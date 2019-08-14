@@ -21,7 +21,7 @@ services:
        aliyun.lb.port_5000: 'tcp://${SLB_ID}:5000'
      links:
        - elasticsearch
-  pilot:
+   pilot:
     image: registry.cn-hangzhou.aliyuncs.com/acs/log-pilot:0.9.5-filebeat
     container_name: pilot
     depends_on:
