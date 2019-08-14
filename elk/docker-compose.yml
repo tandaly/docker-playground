@@ -1,6 +1,6 @@
 version: '2.2'
 services:
-  elasticsearch:
+   elasticsearch:
      image: elasticsearch
    kibana:
      image: kibana
