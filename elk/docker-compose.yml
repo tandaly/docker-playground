@@ -35,7 +35,7 @@ services:
       - 9600:9600
       - 5044:5044
   pilot:
-    image: registry.cn-hangzhou.aliyuncs.com/acs/log-pilot:0.9.5-filebeat
+    image: registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:0.9.5-filebeat
     container_name: pilot
     links:
       - elasticsearch
