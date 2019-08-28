@@ -1,0 +1,6 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
