@@ -7,7 +7,7 @@ services:
     ports:
       - "3307:3307"
     environment:
-    MYSQL_ROOT_PASSWORD: 3a99bce0c4991b91
+      MYSQL_ROOT_PASSWORD: 3a99bce0c4991b91
     volumes:
       - /opt/docker/mysql/conf:/etc/mysql/mysql.conf.d
       - /opt/docker/mysql/data:/usr/local/mysql/data
