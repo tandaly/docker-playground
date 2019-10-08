@@ -1,6 +1,23 @@
 version: '2'
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx
+  mysql:
+    container_name: mysql
     restart: always
+    image: mysql:5.7
+    ports:
+      - "3307:3307"
+    environment:
+    MYSQL_ROOT_PASSWORD: 3a99bce0c4991b91
+    volumes:
+      - /opt/docker/mysql/conf:/etc/mysql/mysql.conf.d
+      - /opt/docker/mysql/data:/usr/local/mysql/data
+      - /opt/docker/mysql/logs/:/usr/local/mysql/logs
+
+  confluence:
+    container_name: wiki_confluence
+    restart: always
+    image: cptactionhank/atlassian-confluence:latest
+    ports:
+      - "8090:8090"
+    links:
+      - mysql:mysql
